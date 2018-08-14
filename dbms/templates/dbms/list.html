@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PULZION'18</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+  </head>
+  <body style="background-color: #222;font-family:'serif';">
+  
+  <center>
+   <h3 style="margin-top:10%;color:aqua;">Select Event-Name</h3><br>
+   <div class="list-group">   
+   <form action = "{% url 'dbms:event' %}" method="post">
+    {% csrf_token %}
+    
+    <select name="ename" class="form-control" style="width:20%;">
+    {% for x in ename %}
+      <option value="{{x.event_name}}">{{x.event_name}}</option>
+      {% endfor %}
+      </select>
+      
+      <h3 style="color:aqua;">Select slot:</h3><br>
+      <select name="slot" class="form-control" style="width:20%;">
+      <option value="all">All</option>
+      {% for y in slotlist %}
+      <option value="{{y.slot_no}}">{{y.slot_timing}}</option>
+      {% endfor %}
+      </select>
+    <br> <br>
+    <input type="submit" value="Submit" class="btn btn-default">
+  </form>
+  </div>
+  </center>
+</body>
+</html>
